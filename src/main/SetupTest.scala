@@ -1,4 +1,4 @@
-package main.scala
+package main
 
 object SimpleMain {
   def main(args: Array[String]): Unit = {

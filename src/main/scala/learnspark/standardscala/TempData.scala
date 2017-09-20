@@ -27,11 +27,19 @@ object TempData {
     }.toArray
 
     source.close()
-
+    
     //basic information
     println(data.length)
     data.take(5).foreach(println)
 
+    //how to use map and flatmap
+    //map result an array of array; flat map flat the array of array to array
+    val a = lines.map { x => x.split(",") }
+    val b = lines.flatMap { x => x.split(",") }
+    a.foreach { x => x.foreach { y => println(y) } }
+    println("============================================================================================")
+    b.foreach { x => println(x) }
+    
     //data analysis
     // to pass
     val maxTemp = data.map { x => x.tmax }.max
