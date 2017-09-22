@@ -14,9 +14,10 @@ object RDDTEmpData {
     //set up spark context with proper configuration
     val conf = new SparkConf().setAppName("Temp Data").setMaster("local[*]")
     val sc = new SparkContext(conf)
+    sc.setLogLevel("WARN")
     
     val lines = sc.textFile("MN212142_9392.csv")
-    lines.take(5).foreach(println)
+//    lines.take(5).foreach(println)
     
     val data = lines.flatMap { line =>
       //raw data : 1,335,12,'212142',1895,0,0,12,26,-2 
@@ -31,7 +32,7 @@ object RDDTEmpData {
         }
       }.cache()
     
-    println(data.count())
+//    println(data.count())
     
     //get max
     val maxT = data.max()(Ordering.by { x => x.tmax }).tmax
@@ -105,6 +106,10 @@ object RDDTEmpData {
         })/td.size
     })
     monglyTAvg.collect().sortBy(_._1) foreach(println)
+    
+    val mon = data.groupBy { x => x.month }
+    mon.foreach(println) 
+    //mon = ((group, CompactBuffer(data...)), (group, CompactBuffer(data...)), ...)
   }  
 }
 
