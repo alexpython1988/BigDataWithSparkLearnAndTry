@@ -8,14 +8,13 @@ object WordCount {
     val conf = new SparkConf().setAppName("Word Count").setMaster("local[*]")
     val sc = new SparkContext(conf)
     sc.setLogLevel("WARN")
-    
+      
     val text = sc.textFile("HarryPoter.txt", 4)
     //text.take(100).foreach { x => println(x) }
     val counts = text.flatMap { each => each.toLowerCase().split("\\W+")}.map{
-      word => (word, 1)
-    }.reduceByKey(_ + _)
-    
-    counts.filter(_._1 != "")
+      word => 
+        (word, 1)
+    }.filter(_._1 != "").reduceByKey(_ + _)
     
     counts.collect().sortBy(- _._2).take(10) foreach(println)
   }
