@@ -1,4 +1,4 @@
-package main.scala.learnspark.SparkRDD
+package main.scala.learnspark.sparkRDD
 
 import scalafx.application.JFXApp
 import org.apache.spark.SparkConf

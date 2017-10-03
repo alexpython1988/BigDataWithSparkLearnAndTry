@@ -8,3 +8,5 @@ target/
 .settings/
 *.log
 metastore_db/
+*.txt
+*.csv

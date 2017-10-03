@@ -1,4 +1,4 @@
-package main.scala.learnspark.SparkRDD
+package main.scala.learnspark.sparkRDD
 
 import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
