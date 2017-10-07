@@ -1,16 +1,20 @@
 package main.scala.learnspark.sparkSQL
 
+import java.io.OutputStream
+
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.functions._
 import org.apache.spark.sql.types.DateType
 import org.apache.spark.sql.types.DoubleType
 import org.apache.spark.sql.types.StringType
 import org.apache.spark.sql.types.StructField
 import org.apache.spark.sql.types.StructType
-import org.apache.spark.sql.functions._
 import scalafx.application.JFXApp
 import swiftvis2.plotting._
 import swiftvis2.plotting.renderer.FXRenderer
+import java.io.File
+import javax.imageio.ImageIO
 
 object NOAAData extends JFXApp{
   //set up spark sql evn
@@ -100,7 +104,8 @@ object NOAAData extends JFXApp{
   val lon = localData.map { r => r.getDouble(2) }
   val cg = ColorGradient(0.0 -> BlueARGB, 50.0 -> GreenARGB, 100.0 -> RedARGB)
   val plot = Plot.scatterPlot(lon, lat, "Global Temps", "Longtitude", "Latitude", 4, temps.map(cg))
-  FXRenderer(plot, 800, 600)
+  FXRenderer.saveToImage(plot, 800, 600, new File("Global Temps.png"))
+//  ImageIO.write(renderedPlot, "png", new File("global_temp.png"))
   
   sparkSession.stop()
 }
