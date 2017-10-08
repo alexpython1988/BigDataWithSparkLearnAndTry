@@ -104,8 +104,11 @@ object NOAAData extends JFXApp{
   val lon = localData.map { r => r.getDouble(2) }
   val cg = ColorGradient(0.0 -> BlueARGB, 50.0 -> GreenARGB, 100.0 -> RedARGB)
   val plot = Plot.scatterPlot(lon, lat, "Global Temps", "Longtitude", "Latitude", 4, temps.map(cg))
-  FXRenderer.saveToImage(plot, 800, 600, new File("Global Temps.png"))
-//  ImageIO.write(renderedPlot, "png", new File("global_temp.png"))
+  FXRenderer(plot, 800, 600)
+  
+  // save the plot into a png file using saveToImage method from FXRenderer
+  //FXRenderer.saveToImage(plot, 800, 600, new File("Global_Temps.png"))
+  
   
   sparkSession.stop()
 }
