@@ -11,5 +11,7 @@ lazy val root = (project in file("."))
 	libraryDependencies += "org.apache.spark" % "spark-graphx_2.11" % "2.2.0",
 	libraryDependencies += "org.scala-lang" % "scala-library" % scalaVersion.value, 
     libraryDependencies += "org.scala-lang" % "scala-compiler" % scalaVersion.value, 
-    libraryDependencies += "org.scala-lang" % "scala-reflect" % scalaVersion.value
+    libraryDependencies += "org.scala-lang" % "scala-reflect" % scalaVersion.value,
+    libraryDependencies +=
+  "com.typesafe.akka" %% "akka-actor" % "2.4.1"
   )

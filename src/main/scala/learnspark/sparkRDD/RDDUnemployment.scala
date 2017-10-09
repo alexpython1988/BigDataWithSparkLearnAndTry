@@ -1,15 +1,15 @@
 package main.scala.learnspark.sparkRDD
 
-import scalafx.application.JFXApp
 import org.apache.spark.SparkConf
 import org.apache.spark.SparkContext
+import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 
 //case class == enum
 case class Area(code: String, text: String)
 case class Series(id: String, area: String, measureCode: String, title: String)
 case class LAData(id: String, year: Int, period: Int, value: Double)
 
-object RDDUnemployment extends JFXApp{
+object RDDUnemployment extends App{
   val conf = new SparkConf().setAppName("Unemployment").setMaster("local[*]")
   val sc = new SparkContext(conf)
   sc.setLogLevel("WARN")
