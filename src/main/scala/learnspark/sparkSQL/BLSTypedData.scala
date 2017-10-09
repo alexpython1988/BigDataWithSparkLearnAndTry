@@ -1,8 +1,8 @@
 package main.scala.learnspark.sparkSQL
 
 import org.apache.spark.SparkConf
-import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.Encoders
+import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions.trim
 
 case class Series(sid: String, area: String, measureCode: String, title: String)
@@ -34,7 +34,7 @@ object BLSTypedData extends App {
   //join vs joinWith:  joinWith is a type-preserving join (return tuples instread of dataframe)
   val joinedOne = countyData.joinWith(seriesData, 'id === 'sid).cache()
   //joinedOne.show()
-//  println(joinedOne.first())
+  println(joinedOne.first())
 
   ss.stop()
 }
