@@ -4,11 +4,12 @@ import org.apache.spark.SparkConf
 import org.apache.spark.sql.Encoders
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.functions.trim
+import scalafx.application.JFXApp
 
 case class Series(sid: String, area: String, measureCode: String, title: String)
 case class LACData(id: String, year: Int, period: String, value: Double)
 
-object BLSTypedData extends App {
+object BLSTypedData extends JFXApp {
   val conf = new SparkConf().setAppName("BLST").setMaster("local[*]")
   val ss = SparkSession.builder().config(conf).getOrCreate()
   import ss.implicits._
